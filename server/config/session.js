@@ -1,5 +1,5 @@
 const session = require('express-session');
-const MongoStore = require('connect-mongo');
+const { MongoStore } = require('connect-mongo');
 const mongoose = require('mongoose');
 
 const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;

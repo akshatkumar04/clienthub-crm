@@ -1,3 +1,4 @@
+const User = require('../models/User');
 const ApiError = require('./ApiError');
 
 /**
@@ -39,4 +40,24 @@ const paginated = (items, total, { page, limit }) => ({
   pagination: { page, limit, total, pages: Math.max(Math.ceil(total / limit), 1) },
 });
 
-module.exports = { scopeFor, findAccessible, pick, escapeRegex, getPagination, paginated };
+/**
+ * Decide who owns a record. Sales execs always own what they create; only admins may
+ * assign to someone else (and the target user must exist).
+ */
+const resolveOwnerId = async (user, requestedId) => {
+  if (user.role !== 'admin' || !requestedId) return user._id;
+  if (!(await User.exists({ _id: requestedId }))) {
+    throw new ApiError(400, 'The selected user does not exist');
+  }
+  return requestedId;
+};
+
+module.exports = {
+  resolveOwnerId,
+  scopeFor,
+  findAccessible,
+  pick,
+  escapeRegex,
+  getPagination,
+  paginated,
+};

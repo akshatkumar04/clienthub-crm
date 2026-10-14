@@ -5,7 +5,6 @@ const notFound = (req, _res, next) => {
 };
 
 /** Centralised error handler: maps every failure to { success:false, data, message }. */
-// eslint-disable-next-line no-unused-vars
 const errorHandler = (err, _req, res, _next) => {
   let status = err.statusCode || 500;
   let message = err.message || 'Internal server error';

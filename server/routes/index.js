@@ -6,5 +6,10 @@ router.get('/health', (_req, res) =>
 );
 router.use('/auth', require('./authRoutes'));
 router.use('/users', require('./userRoutes'));
+router.use('/leads', require('./leadRoutes'));
+router.use('/contacts', require('./contactRoutes'));
+router.use('/deals', require('./dealRoutes'));
+router.use('/activities', require('./activityRoutes'));
+router.use('/dashboard', require('./dashboardRoutes'));
 
 module.exports = router;
