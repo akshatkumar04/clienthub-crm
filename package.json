@@ -1,0 +1,14 @@
+{
+  "name": "clienthub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ClientHub - MERN CRM monorepo helper scripts",
+  "scripts": {
+    "install:all": "npm --prefix server install && npm --prefix client install",
+    "server": "npm --prefix server run dev",
+    "client": "npm --prefix client run dev",
+    "seed": "npm --prefix server run seed",
+    "test": "npm --prefix server test",
+    "lint": "npm --prefix server run lint && npm --prefix client run lint"
+  }
+}
